@@ -1,7 +1,14 @@
 import requests
 import telebot
 from bs4 import BeautifulSoup
-bot = telebot.TeleBot('2049517751:AAFhBBidOVQdIroC86h3kMjwQBI5QLPH8uk')
+import configparser
+
+config = configparser.ConfigParser()
+config.read('config.ini')
+telegram_api_token = config['telegram']['telegram_api_token']
+bot = telebot.TeleBot(telegram_api_token)
+
+
 @bot.message_handler(content_types=['text'])
 def start(message):
     if message.text == "/start":
